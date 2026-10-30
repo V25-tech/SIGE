@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Emitir Declaração</title>
+
+<style>
+
+body{
+    font-family:Segoe UI;
+    padding:40px;
+    background:#f5f7fa;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+}
+
+button{
+    margin-top:20px;
+    background:#0D47A1;
+    color:white;
+    border:none;
+    padding:14px;
+    width:100%;
+    border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Emitir Declaração</h1>
+
+<form method="post">
+
+{% csrf_token %}
+
+<label>Aluno</label>
+
+<select name="aluno">
+
+{% for aluno in alunos %}
+<option value="{{ aluno.id }}">
+    {{ aluno.nome }}
+</option>
+{% endfor %}
+
+</select>
+
+<label>Tipo</label>
+
+<select name="tipo">
+
+<option>
+Declaração de Matrícula
+</option>
+
+</select>
+
+<button type="submit">
+Gerar PDF
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

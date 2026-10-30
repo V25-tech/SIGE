@@ -1,0 +1,182 @@
+{% load static %}
+
+<img src="{% static 'img/logo-sige.png' %}"
+     alt="Logo SIGE"
+     class="logo">
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIGE</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(
+        135deg,
+        #0D47A1,
+        #1976D2
+    );
+    min-height:100vh;
+}
+
+.container{
+    max-width:1000px;
+    margin:40px auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,.2);
+    text-align:center;
+}
+
+.logo{
+    width:220px;
+    height:auto;
+    display:block;
+    margin:0 auto 20px;
+}
+h1{
+    color:#0D47A1;
+    font-size:52px;
+    margin-top:15px;
+}
+
+.subtitulo{
+    font-size:24px;
+    color:#444;
+    margin-top:10px;
+}
+
+.slogan{
+    color:#1976D2;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.escola{
+    color:#777;
+    margin:20px 0 30px;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#F5F7FA;
+    width:220px;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#0D47A1;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:40px;
+    font-weight:bold;
+    color:#1976D2;
+}
+
+.botao{
+    display:block;
+    width:340px;
+    margin:15px auto;
+    padding:16px;
+    background:#0D47A1;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.botao:hover{
+    background:#1976D2;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <img src="{% static 'img/logo-sige.png' %}"
+         alt="Logo SIGE"
+         class="logo">
+
+    <h1>SIGE</h1>
+
+    <p class="subtitulo">
+        Sistema Integrado de Gestão Escolar
+    </p>
+
+    <p class="slogan">
+        Conectando Educação, Gestão e Tecnologia
+    </p>
+
+    <p class="escola">
+        EMEB Dionysio Bovo
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>👨‍🎓 Alunos</h3>
+            <p>{{ total_alunos }}</p>
+        </div>
+
+        <div class="card">
+            <h3>👨‍👩‍👧 Responsáveis</h3>
+            <p>{{ total_responsaveis }}</p>
+        </div>
+
+        <div class="card">
+            <h3>📄 Documentos</h3>
+            <p>{{ total_documentos }}</p>
+        </div>
+
+    </div>
+
+    <a href="/alunos/" class="botao">
+        👨‍🎓 Consultar Alunos
+    </a>
+
+    <a href="/admin/alunos/aluno/add/" class="botao">
+        ➕ Cadastrar Aluno
+    </a>
+
+    <<a href="/emitir-declaracao/" class="botao">
+📄 Emitir Declaração
+</a>
+
+    <a href="/admin/" class="botao">
+        ⚙️ Administração
+    </a>
+
+</div>
+
+</body>
+</html>
