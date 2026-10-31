@@ -151,6 +151,8 @@ O projeto contribui para a melhoria dos processos administrativos e pedagógicos
 
 **Vanusa A. Ferreira**
 
+🔗 GitHub: github.com/V25-tech/SIGE
+
 Projeto desenvolvido para fins acadêmicos.
 
 ---
