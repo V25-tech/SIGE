@@ -1,5 +1,21 @@
+# Ambiente virtual
 venv/
+
+# Python
 __pycache__/
-db.sqlite3
 *.pyc
-.env
+*.pyo
+
+# Banco de desenvolvimento
+db.sqlite3
+
+# Coverage
+.coverage
+htmlcov/
+
+# VS Code
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
