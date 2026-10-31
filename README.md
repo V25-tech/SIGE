@@ -153,6 +153,7 @@ O projeto contribui para a melhoria dos processos administrativos e pedagógicos
 
 🔗 GitHub: github.com/V25-tech/SIGE
 
+🔗 Linkedln : https://lnkd.in/p/dvvJi94U
 Projeto desenvolvido para fins acadêmicos.
 
 ---
