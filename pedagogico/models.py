@@ -1,6 +1,32 @@
 from django.db import models
-from alunos.models import Aluno
+from alunos.models import Aluno, Responsavel
 
+class Entrega(models.Model):
+
+    aluno = models.ForeignKey(
+        Aluno,
+        on_delete=models.CASCADE
+    )
+
+    responsavel = models.ForeignKey(
+        Responsavel,
+        on_delete=models.CASCADE
+    )
+
+    tipo = models.CharField(
+        max_length=100
+    )
+
+    data_entrega = models.DateField()
+
+    observacoes = models.TextField()
+
+    class Meta:
+        verbose_name = "Entrega"
+        verbose_name_plural = "Entregas"
+
+    def __str__(self):
+        return f"{self.aluno.nome} - {self.tipo}"
 
 class Nota(models.Model):
 
@@ -109,7 +135,6 @@ class IndicadorPedagogico(models.Model):
     def __str__(self):
         return self.componente
 
-
 class PlanoMelhoria(models.Model):
 
     indicador = models.ForeignKey(
@@ -119,7 +144,9 @@ class PlanoMelhoria(models.Model):
 
     acao = models.TextField()
 
-    responsavel = models.CharField(max_length=200)
+    responsavel = models.CharField(
+        max_length=200
+    )
 
     prazo = models.DateField()
 
@@ -129,3 +156,84 @@ class PlanoMelhoria(models.Model):
 
     def __str__(self):
         return self.responsavel
+
+
+class HistoricoEscolar(models.Model):
+
+    aluno = models.ForeignKey(
+        Aluno,
+        on_delete=models.CASCADE
+    )
+
+    ano_letivo = models.IntegerField()
+
+    turma = models.CharField(
+        max_length=50
+    )
+
+    resultado_final = models.CharField(
+        max_length=50
+    )
+
+    observacoes = models.TextField()
+
+    class Meta:
+        verbose_name = "Histórico Escolar"
+        verbose_name_plural = "Históricos Escolares"
+
+    def __str__(self):
+        return f"{self.aluno.nome} - {self.ano_letivo}"
+
+
+class ParecerProfessor(models.Model):
+
+    aluno = models.ForeignKey(
+        Aluno,
+        on_delete=models.CASCADE
+    )
+
+    professor = models.CharField(
+        max_length=200
+    )
+
+    semestre = models.CharField(
+        max_length=20
+    )
+
+    parecer = models.TextField()
+
+    pontos_melhorar = models.TextField()
+
+    data = models.DateField()
+
+    class Meta:
+        verbose_name = "Parecer do Professor"
+        verbose_name_plural = "Pareceres dos Professores"
+
+    def __str__(self):
+        return f"{self.aluno.nome} - {self.professor}"
+
+
+class RelatorioSemestral(models.Model):
+
+    aluno = models.ForeignKey(
+        Aluno,
+        on_delete=models.CASCADE
+    )
+
+    semestre = models.CharField(
+        max_length=20
+    )
+
+    faltas = models.IntegerField()
+
+    observacoes = models.TextField()
+
+    class Meta:
+        verbose_name = "Relatório Semestral"
+        verbose_name_plural = "Relatórios Semestrais"
+
+    def __str__(self):
+        return f"{self.aluno.nome} - {self.semestre}"
+
+

@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-chave-temporaria-sige'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -19,10 +19,13 @@ INSTALLED_APPS = [
     'alunos',
     'documentos',
     'pedagogico',
-]
+    'contas',
+   ] 
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -30,9 +33,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-ROOT_URLCONF = 'sige.urls'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,8 +78,5 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+

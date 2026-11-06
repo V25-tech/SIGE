@@ -6,7 +6,11 @@ from .models import (
     ReuniaoHTPC,
     ReuniaoPais,
     IndicadorPedagogico,
-    PlanoMelhoria
+    PlanoMelhoria,
+    HistoricoEscolar,
+    ParecerProfessor,
+    RelatorioSemestral,
+    Entrega,
 )
 
 admin.site.register(Nota)
@@ -15,3 +19,7 @@ admin.site.register(ReuniaoHTPC)
 admin.site.register(ReuniaoPais)
 admin.site.register(IndicadorPedagogico)
 admin.site.register(PlanoMelhoria)
+admin.site.register(HistoricoEscolar)
+admin.site.register(ParecerProfessor)
+admin.site.register(RelatorioSemestral)
+admin.site.register(Entrega)

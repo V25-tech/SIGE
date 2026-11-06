@@ -31,7 +31,11 @@ select{
     padding:10px;
     margin-top:5px;
 }
-
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+}
 button{
     margin-top:20px;
     background:#0D47A1;
@@ -72,14 +76,48 @@ button{
 
 <select name="tipo">
 
-<option>
-Declaração de Matrícula
-</option>
+    <option value="matricula">
+        Declaração de Matrícula
+    </option>
+
+    <option value="frequencia">
+        Declaração de Frequência
+    </option>
+
+    <option value="transferencia">
+        Declaração de Transferência
+    </option>
+
+    <option value="historico">
+        Histórico Escolar
+    </option>
+
+    <option value="uniforme">
+        Recebimento de Uniforme
+    </option>
+
+    <option value="material">
+        Recebimento de Material Escolar
+    </option>
+
+    <option value="participacao">
+        Participação em Projetos
+    </option>
+
+    <option value="apm">
+        Prestação de Contas da APM
+    </option>
 
 </select>
 
-<button type="submit">
-Gerar PDF
+
+<label>Data da Retirada</label>
+
+<input
+    type="date"
+    name="data_retirada">
+   <button type="submit">
+    Gerar PDF
 </button>
 
 </form>
