@@ -8,6 +8,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+
+# APPLICATIONS
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -20,8 +23,10 @@ INSTALLED_APPS = [
     'documentos',
     'pedagogico',
     'contas',
-   ] 
+]
 
+
+# MIDDLEWARE
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -33,7 +38,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+# URLS
+
+ROOT_URLCONF = 'sige.urls'
+
+
+# TEMPLATES
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -49,7 +62,13 @@ TEMPLATES = [
     },
 ]
 
+
+# WSGI
+
 WSGI_APPLICATION = 'sige.wsgi.application'
+
+
+# DATABASE
 
 DATABASES = {
     'default': {
@@ -58,7 +77,13 @@ DATABASES = {
     }
 }
 
+
+# PASSWORDS
+
 AUTH_PASSWORD_VALIDATORS = []
+
+
+# INTERNATIONALIZATION
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -68,9 +93,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# STATIC FILES
 
 STATIC_URL = 'static/'
 
@@ -78,5 +102,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
+# DEFAULT PRIMARY KEY
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
