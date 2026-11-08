@@ -1,0 +1,214 @@
+<!DOCTYPE html>      
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard da Direção</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>📊 Dashboard da Direção</h1>
+
+<h2>Indicadores Pedagógicos</h2>
+
+<p>Total de Matriculados: {{ total_matriculados }}</p>
+
+<p>Total de Participantes: {{ total_participantes }}</p>
+
+<p>Total de Faltosos: {{ total_faltosos }}</p>
+
+<p>Participação: {{ participacao }}%</p>
+
+<p>
+Percentual de Faltosos:
+<strong>{{ percentual_faltosos }}%</strong>
+</p>
+
+<p>
+Percentual Acima da Meta:
+<strong>{{ percentual_acima_meta }}%</strong>
+</p>
+
+<p>
+Percentual Abaixo da Meta:
+<strong>{{ percentual_abaixo_meta }}%</strong>
+</p>
+
+<p>Acima da Meta: {{ total_acima_meta }}</p>
+
+<p>Abaixo da Meta: {{ total_abaixo_meta }}</p>
+
+<hr>
+
+<h2>📊 Desempenho da Avaliação</h2>
+
+<canvas id="graficoPedagogico"></canvas>
+
+<hr>
+
+<h2>💰 Financeiro APM</h2>
+
+<p>
+Arrecadação:
+<strong>R$ {{ total_arrecadado }}</strong>
+</p>
+
+<p>
+Despesas:
+<strong>R$ {{ total_despesas }}</strong>
+</p>
+
+<p>
+Saldo:
+<strong>R$ {{ saldo_total }}</strong>
+</p>
+
+<canvas id="graficoAPM"></canvas>
+
+<hr>
+
+<h2>📅 Histórico Financeiro APM</h2>
+
+<table border="1" cellpadding="10">
+
+    <tr>
+
+        <th>Mês</th>
+
+        <th>Ano</th>
+
+        <th>Saldo Inicial</th>
+
+        <th>Arrecadação</th>
+
+        <th>Despesas</th>
+
+        <th>Saldo Final</th>
+
+    </tr>
+
+    {% for item in meses_apm %}
+
+    <tr>
+
+        <td>{{ item.mes }}</td>
+
+        <td>{{ item.ano }}</td>
+
+        <td>R$ {{ item.saldo_inicial }}</td>
+
+        <td>R$ {{ item.arrecadacao }}</td>
+
+        <td>R$ {{ item.despesas }}</td>
+
+        <td>R$ {{ item.saldo_final }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+
+<p>
+<a href="/">Voltar ao SIGE</a>
+</p>
+
+<a
+    href="/indicadores/historico-apm/"
+    class="btn-voltar"
+>
+    💰 Histórico APM
+</a>
+
+<script>
+
+const ctx = document.getElementById('graficoPedagogico');
+
+if (ctx) {
+
+    new Chart(ctx, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: [
+                'Participantes',
+                'Faltosos',
+                'Acima da Meta',
+                'Abaixo da Meta'
+            ],
+
+            datasets: [{
+
+                label: 'Indicadores Pedagógicos',
+
+                data: [
+                    {{ total_participantes|default:0 }},
+                    {{ total_faltosos|default:0 }},
+                    {{ total_acima_meta|default:0 }},
+                    {{ total_abaixo_meta|default:0 }}
+                ],
+
+                backgroundColor: [
+                    '#3498db',
+                    '#e74c3c',
+                    '#2ecc71',
+                    '#f39c12'
+                ]
+
+            }]
+        },
+
+        options: {
+            responsive: true
+        }
+
+    });
+
+}
+
+const apm = document.getElementById('graficoAPM');
+
+if (apm) {
+
+    new Chart(apm, {
+
+        type: 'pie',
+
+        data: {
+
+            labels: [
+                'Arrecadação',
+                'Despesas'
+            ],
+
+            datasets: [{
+
+                data: [
+                    {{ total_arrecadado|default:0 }},
+                    {{ total_despesas|default:0 }}
+                ],
+
+                backgroundColor: [
+                    '#27ae60',
+                    '#c0392b'
+                ]
+
+            }]
+
+        },
+
+        options: {
+            responsive: true
+        }
+
+    });
+
+}
+
+</script>

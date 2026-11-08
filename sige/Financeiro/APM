@@ -1,0 +1,51 @@
+class APM(models.Model):
+
+    mes = models.IntegerField()
+
+    ano = models.IntegerField()
+
+    saldo_inicial = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0
+    )
+
+    arrecadacao = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    despesas = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    observacao = models.TextField(
+        blank=True
+    )
+
+    @property
+    def saldo_final(self):
+
+        return (
+            self.saldo_inicial +
+            self.arrecadacao -
+            self.despesas
+        )
+
+    def __str__(self):
+
+        return f"{self.mes:02d}/{self.ano}"
+
+    class Meta:
+
+        unique_together = (
+            'mes',
+            'ano'
+        )
+
+        verbose_name = 'APM'
+
+        verbose_name_plural = 'APM Financeira'
+
+        ordering = ['-ano', '-mes']

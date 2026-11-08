@@ -1,18 +1,34 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
+
 urlpatterns = [
-    path('', views.home),
 
-    path('alunos/', views.lista_alunos),
+    path(
+        '',
+        views.home
+    ),
 
-    path('emitir-declaracao/', views.emitir_declaracao),
+    path(
+        'indicadores/',
+        include('indicadores.urls')
+    ),
 
-    path('relatorio-pais/', views.relatorio_pais),
+    path(
+        'emitir-declaracao/',
+        views.emitir_declaracao
+    ),
 
-     path('admin/', admin.site.urls),
+    path(
+        'relatorio-pais/',
+        views.relatorio_pais
+    ),
+
+    path(
+        'admin/',
+        admin.site.urls
+    ),
+
 ]
-
-    

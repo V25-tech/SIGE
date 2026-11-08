@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico Financeiro APM</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            padding:20px;
+            background:#f4f6f9;
+        }
+
+        h1{
+            color:#0D47A1;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th{
+            background:#0D47A1;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            border-bottom:1px solid #ddd;
+            text-align:center;
+        }
+
+        tr:hover{
+            background:#f5f5f5;
+        }
+
+        a{
+            display:inline-block;
+            margin-top:20px;
+            background:#0D47A1;
+            color:white;
+            padding:10px 15px;
+            text-decoration:none;
+            border-radius:6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>💰 Histórico Financeiro APM</h1>
+
+<table>
+
+    <tr>
+
+        <th>Mês/Ano</th>
+
+        <th>Saldo Inicial</th>
+
+        <th>Arrecadação</th>
+
+        <th>Despesas</th>
+
+        <th>Saldo Final</th>
+
+    </tr>
+
+    {% for item in registros %}
+
+    <tr>
+
+        <td>
+            {{ item.mes }}/{{ item.ano }}
+        </td>
+
+        <td>
+            R$ {{ item.saldo_inicial }}
+        </td>
+
+        <td>
+            R$ {{ item.arrecadacao }}
+        </td>
+
+        <td>
+            R$ {{ item.despesas }}
+        </td>
+
+        <td>
+            R$ {{ item.saldo_final }}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<a href="/indicadores/">
+    Voltar ao Dashboard
+</a>
+
+</body>
+
+</html>

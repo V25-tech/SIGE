@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Importar Planilha</title>
+</head>
+
+<body>
+
+<h1>📁 Importar Planilha Excel</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <input
+        type="file"
+        name="arquivo"
+        accept=".xlsx,.xls"
+    >
+
+    <button type="submit">
+        Importar
+    </button>
+
+</form>
+
+<br>
+
+{% if mensagem %}
+
+<p>
+    {{ mensagem }}
+</p>
+
+{% endif %}
+
+<br>
+
+<a href="/indicadores/">
+    Voltar ao Dashboard
+</a>
+
+</body>
+
+</html>
