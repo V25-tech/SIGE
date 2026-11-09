@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico Financeiro APM</title>
+</head>
+
+<body>
+
+<h1>💰 Histórico Financeiro APM</h1>
+
+<table border="1">
+
+    <tr>
+        <th>Mês</th>
+        <th>Ano</th>
+        <th>Saldo Inicial</th>
+        <th>Arrecadação</th>
+        <th>Despesas</th>
+        <th>Saldo Final</th>
+    </tr>
+
+    {% for item in registros %}
+
+    <tr>
+        <td>{{ item.mes }}</td>
+        <td>{{ item.ano }}</td>
+        <td>R$ {{ item.saldo_inicial }}</td>
+        <td>R$ {{ item.arrecadacao }}</td>
+        <td>R$ {{ item.despesas }}</td>
+        <td>R$ {{ item.saldo_final }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<br>
+
+<a href="/indicadores/">
+    Voltar ao Dashboard
+</a>
+
+</body>
+
+</html>
