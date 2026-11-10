@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class AvaliacaoExterna(models.Model):
@@ -26,6 +27,24 @@ class AvaliacaoExterna(models.Model):
     observacoes = models.TextField(
         blank=True
     )
+
+    def clean(self):
+
+        if (
+            self.acima_meta +
+            self.abaixo_meta
+        ) > self.participantes:
+
+            raise ValidationError(
+                "Acima da Meta + Abaixo da Meta não pode ser maior que Participantes."
+            )
+
+    def __str__(self):
+
+        return (
+            f"{self.avaliacao} - "
+            f"{self.turma}"
+        )
 
 
 class APM(models.Model):
@@ -62,3 +81,19 @@ class APM(models.Model):
             self.arrecadacao -
             self.despesas
         )
+
+    def __str__(self):
+
+        return f"{self.mes:02d}/{self.ano}"
+
+    class Meta:
+
+        unique_together = (
+            'mes',
+            'ano'
+        )
+
+        ordering = [
+            '-ano',
+            '-mes'
+        ]

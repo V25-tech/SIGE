@@ -1,26 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard da Direção</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard da Direção</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
 
 <h1>📊 Dashboard da Direção</h1>
 
-<h2>Indicadores Pedagógicos</h2>
+<h2>📚 Indicadores Pedagógicos</h2>
 
-<p>Total de Matriculados: {{ total_matriculados }}</p>
-<p>Total de Participantes: {{ total_participantes }}</p>
-<p>Total de Faltosos: {{ total_faltosos }}</p>
-<p>Participação: {{ participacao }}%</p>
-<p>Percentual de Faltosos: {{ percentual_faltosos }}%</p>
-<p>Percentual Acima da Meta: {{ percentual_acima_meta }}%</p>
-<p>Percentual Abaixo da Meta: {{ percentual_abaixo_meta }}%</p>
+<p>Total de Matriculados:
+<strong>{{ total_matriculados }}</strong>
+</p>
+
+<p>Total de Participantes:
+<strong>{{ total_participantes }}</strong>
+</p>
+
+<p>Total de Faltosos:
+<strong>{{ total_faltosos }}</strong>
+</p>
+
+<p>Participação:
+<strong>{{ participacao }}%</strong>
+</p>
+
+<p>Acima da Meta:
+<strong>{{ percentual_acima_meta }}%</strong>
+</p>
+
+<p>Abaixo da Meta:
+<strong>{{ percentual_abaixo_meta }}%</strong>
+</p>
 
 <hr>
 
@@ -32,11 +54,62 @@
 
 <h2>💰 Financeiro APM</h2>
 
-<p>Arrecadação: R$ {{ total_arrecadado }}</p>
-<p>Despesas: R$ {{ total_despesas }}</p>
-<p>Saldo: R$ {{ saldo_total }}</p>
+<p>Arrecadação:
+<strong>R$ {{ total_arrecadado }}</strong>
+</p>
+
+<p>Despesas:
+<strong>R$ {{ total_despesas }}</strong>
+</p>
+
+<p>Saldo:
+<strong>R$ {{ saldo_total }}</strong>
+</p>
 
 <canvas id="graficoAPM"></canvas>
+
+<hr>
+
+<h2>🏫 Comparativo por Turma</h2>
+
+<hr>
+
+<h2>📈 Participação por Turma</h2>
+
+<canvas id="graficoTurmas"></canvas>
+
+<table border="1">
+
+<tr>
+<th>Turma</th>
+<th>Participantes</th>
+<th>Faltosos</th>
+<th>Acima da Meta</th>
+<th>Abaixo da Meta</th>
+<th>Participação</th>
+</tr>
+
+{% for turma in comparativo_turmas %}
+
+<tr>
+
+<td>{{ turma.turma }}</td>
+
+<td>{{ turma.participantes }}</td>
+
+<td>{{ turma.faltosos }}</td>
+
+<td>{{ turma.acima_meta }}</td>
+
+<td>{{ turma.abaixo_meta }}</td>
+
+<td>{{ turma.participacao }}%</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
 
 <hr>
 
@@ -44,80 +117,142 @@
 
 <table border="1">
 
-    <tr>
-        <th>Mês</th>
-        <th>Ano</th>
-        <th>Saldo Inicial</th>
-        <th>Arrecadação</th>
-        <th>Despesas</th>
-        <th>Saldo Final</th>
-    </tr>
+<tr>
+<th>Mês</th>
+<th>Ano</th>
+<th>Saldo Inicial</th>
+<th>Arrecadação</th>
+<th>Despesas</th>
+<th>Saldo Final</th>
+</tr>
 
-    {% for item in meses_apm %}
+{% for item in meses_apm %}
 
-    <tr>
-        <td>{{ item.mes }}</td>
-        <td>{{ item.ano }}</td>
-        <td>R$ {{ item.saldo_inicial }}</td>
-        <td>R$ {{ item.arrecadacao }}</td>
-        <td>R$ {{ item.despesas }}</td>
-        <td>R$ {{ item.saldo_final }}</td>
-    </tr>
+<tr>
 
-    {% endfor %}
+<td>{{ item.mes }}</td>
+
+<td>{{ item.ano }}</td>
+
+<td>R$ {{ item.saldo_inicial }}</td>
+
+<td>R$ {{ item.arrecadacao }}</td>
+
+<td>R$ {{ item.despesas }}</td>
+
+<td>R$ {{ item.saldo_final }}</td>
+
+</tr>
+
+{% endfor %}
 
 </table>
 
 <br>
 
-<a href="/">Voltar ao SIGE</a>
-
-<a href="/indicadores/historico-apm/">
-    Histórico APM
+<a href="/">
+Voltar ao SIGE
 </a>
 
 <script>
 
-const ctx = document.getElementById('graficoPedagogico');
+new Chart(
+document.getElementById('graficoPedagogico'),
+{
+type:'bar',
 
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            'Participantes',
-            'Faltosos',
-            'Acima da Meta',
-            'Abaixo da Meta'
-        ],
-        datasets: [{
-            label: 'Indicadores Pedagógicos',
-            data: [
-                {{ total_participantes|default:0 }},
-                {{ total_faltosos|default:0 }},
-                {{ total_acima_meta|default:0 }},
-                {{ total_abaixo_meta|default:0 }}
-            ]
+data:{
+
+labels:[
+'Participantes',
+'Faltosos',
+'Acima da Meta',
+'Abaixo da Meta'
+],
+
+datasets:[{
+
+label:'Indicadores',
+
+data:[
+{{ total_participantes }},
+{{ total_faltosos }},
+{{ total_acima_meta }},
+{{ total_abaixo_meta }}
+]
+
+}]
+
+}
+}
+);
+
+new Chart(
+document.getElementById('graficoAPM'),
+{
+type:'pie',
+
+data:{
+
+labels:[
+'Arrecadação',
+'Despesas'
+],
+
+datasets:[{
+
+data:[
+{{ total_arrecadado }},
+{{ total_despesas }}
+]
+
+}]
+
+}
+}
+);
+
+const labelsTurmas = [
+
+{% for turma in comparativo_turmas %}
+
+'{{ turma.turma }}',
+
+{% endfor %}
+
+];
+
+const dadosTurmas = [
+
+{% for turma in comparativo_turmas %}
+
+{{ turma.participacao }},
+
+{% endfor %}
+
+];
+
+new Chart(
+document.getElementById('graficoTurmas'),
+{
+    type:'bar',
+
+    data:{
+
+        labels: labelsTurmas,
+
+        datasets:[{
+
+            label: 'Participação (%)',
+
+            data: dadosTurmas,
+
+            backgroundColor: '#0D47A1'
+
         }]
     }
-});
-
-const apm = document.getElementById('graficoAPM');
-
-new Chart(apm, {
-    type: 'pie',
-    data: {
-        labels: [
-            'Arrecadação',
-            'Despesas'
-        ],
-        datasets: [{
-            data: [
-                {{ total_arrecadado|default:0 }},
-                {{ total_despesas|default:0 }}
-            ]
-        }]
-    }
-});
+}
+);
 
 </script>
 

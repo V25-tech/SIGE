@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import pandas as pd
 
 from .models import (
     AvaliacaoExterna,
@@ -8,35 +9,26 @@ from .models import (
 
 def dashboard_direcao(request):
 
-    # ==========================
-    # AVALIAÇÕES EXTERNAS
-    # ==========================
-
     avaliacoes = AvaliacaoExterna.objects.all()
 
     total_matriculados = sum(
-        a.matriculados
-        for a in avaliacoes
+        a.matriculados for a in avaliacoes
     )
 
     total_participantes = sum(
-        a.participantes
-        for a in avaliacoes
+        a.participantes for a in avaliacoes
     )
 
     total_faltosos = sum(
-        a.faltosos
-        for a in avaliacoes
+        a.faltosos for a in avaliacoes
     )
 
     total_acima_meta = sum(
-        a.acima_meta
-        for a in avaliacoes
+        a.acima_meta for a in avaliacoes
     )
 
     total_abaixo_meta = sum(
-        a.abaixo_meta
-        for a in avaliacoes
+        a.abaixo_meta for a in avaliacoes
     )
 
     participacao = 0
@@ -68,11 +60,6 @@ def dashboard_direcao(request):
             total_participantes
         ) * 100
 
-
-    # ==========================
-    # COMPARATIVO POR TURMA
-    # ==========================
-
     comparativo_turmas = []
 
     for avaliacao in avaliacoes:
@@ -86,48 +73,54 @@ def dashboard_direcao(request):
                 avaliacao.matriculados
             ) * 100
 
-        comparativo_turmas.append({
+        comparativo_turmas.append(
+            {
+                'avaliacao':
+                    avaliacao.avaliacao,
 
-            'avaliacao':
-                avaliacao.avaliacao,
+                'data':
+                    avaliacao.data,
 
-            'data':
-                avaliacao.data,
+                'turma':
+                    avaliacao.turma,
 
-            'turma':
-                avaliacao.turma,
+                'matriculados':
+                    avaliacao.matriculados,
 
-            'matriculados':
-                avaliacao.matriculados,
+                'participantes':
+                    avaliacao.participantes,
 
-            'participantes':
-                avaliacao.participantes,
+                'faltosos':
+                    avaliacao.faltosos,
 
-            'faltosos':
-                avaliacao.faltosos,
+                'acima_meta':
+                    avaliacao.acima_meta,
 
-            'acima_meta':
-                avaliacao.acima_meta,
+                'abaixo_meta':
+                    avaliacao.abaixo_meta,
 
-            'abaixo_meta':
-                avaliacao.abaixo_meta,
-
-            'participacao':
-                round(
-                    participacao_turma,
-                    2
-                )
-
-        })
+                'participacao':
+                    round(
+                        participacao_turma,
+                        2
+                    )
+            }
+        )
 
     comparativo_turmas.sort(
         key=lambda x: x['participacao'],
         reverse=True
     )
 
-    # ==========================
-    # APM FINANCEIRA
-    # ==========================
+    ultima_avaliacao = None
+
+    if avaliacoes.exists():
+
+        ultima_avaliacao = (
+            avaliacoes
+            .order_by('-data')
+            .first()
+        )
 
     meses_apm = APM.objects.all().order_by(
         '-ano',
@@ -144,18 +137,18 @@ def dashboard_direcao(request):
         for item in meses_apm
     )
 
-    saldo_total = sum(
-        item.saldo_final
-        for item in meses_apm
-    )
+    saldo_total = 0
+
+    if meses_apm.exists():
+
+        saldo_total = (
+            meses_apm.first().saldo_final
+        )
 
     return render(
         request,
         'indicadores/dashboard.html',
         {
-
-            # PEDAGÓGICO
-
             'total_matriculados':
                 total_matriculados,
 
@@ -195,12 +188,11 @@ def dashboard_direcao(request):
                     2
                 ),
 
-            # TURMAS
-
             'comparativo_turmas':
                 comparativo_turmas,
 
-            # APM
+            'ultima_avaliacao':
+                ultima_avaliacao,
 
             'meses_apm':
                 meses_apm,
@@ -213,9 +205,10 @@ def dashboard_direcao(request):
 
             'saldo_total':
                 saldo_total,
-
         }
     )
+
+
 def historico_apm(request):
 
     registros = APM.objects.all().order_by(
@@ -231,7 +224,6 @@ def historico_apm(request):
         }
     )
 
-import pandas as pd
 
 def importar_planilha(request):
 
@@ -255,8 +247,8 @@ def importar_planilha(request):
 
     return render(
         request,
-        "indicadores/importar_planilha.html",
+        'indicadores/importar_planilha.html',
         {
-            "mensagem": mensagem
+            'mensagem': mensagem
         }
     )
