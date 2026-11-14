@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Busca Ativa</title>
+
+</head>
+
+<body>
+
+<h1>🔎 Busca Ativa Escolar</h1>
+
+<table border="1">
+
+<tr>
+
+<th>Aluno</th>
+<th>Faltas</th>
+<th>Motivo</th>
+<th>Atestado</th>
+<th>Responsável</th>
+<th>Telefone</th>
+<th>Professor</th>
+<th>Relatório</th>
+
+</tr>
+
+{% for item in registros %}
+
+<tr>
+
+<td>{{ item.aluno }}</td>
+
+<td>{{ item.quantidade_faltas }}</td>
+
+<td>{{ item.motivo_faltas }}</td>
+
+<td>{{ item.possui_atestado }}</td>
+
+<td>{{ item.responsavel_contato }}</td>
+
+<td>{{ item.telefone_contato }}</td>
+
+<td>{{ item.professor_responsavel }}</td>
+
+<td>
+
+<a
+href="{% url 'relatorio_conselho' item.id %}"
+target="_blank"
+>
+
+📄 PDF
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

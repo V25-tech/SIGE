@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Lista de Alunos</title>
+
+</head>
+
+<body>
+
+<h1>📚 Lista de Alunos</h1>
+
+<table border="1">
+
+    <tr>
+
+        <th>Nome</th>
+
+        <th>Matrícula</th>
+
+        <th>Turma</th>
+
+        <th>Responsável</th>
+
+        <th>WhatsApp</th>
+
+    </tr>
+
+    {% for aluno in alunos %}
+
+    <tr>
+
+        <td>{{ aluno.nome }}</td>
+
+        <td>{{ aluno.matricula }}</td>
+
+        <td>{{ aluno.turma }}</td>
+
+        <td>{{ aluno.responsavel.nome }}</td>
+
+        <td>
+
+            <a
+                href="https://wa.me/55{{ aluno.responsavel.whatsapp }}"
+                target="_blank">
+
+                📱 WhatsApp
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<p>
+
+    <a href="/alunos/busca-ativa/">
+
+        🔎 Busca Ativa
+
+    </a>
+
+</p>
+
+</body>
+
+</html>

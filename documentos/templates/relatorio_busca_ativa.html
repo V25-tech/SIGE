@@ -1,0 +1,45 @@
+<h1>Relatório Busca Ativa</h1>
+
+<table border="1">
+
+<tr>
+
+<th>Aluno</th>
+
+<th>Faltas</th>
+
+<th>Motivo</th>
+
+<th>Atestado</th>
+
+<th>Responsável</th>
+
+<th>Telefone</th>
+
+<th>Professor</th>
+
+</tr>
+
+{% for item in registros %}
+
+<tr>
+
+<td>{{ item.aluno }}</td>
+
+<td>{{ item.quantidade_faltas }}</td>
+
+<td>{{ item.motivo_faltas }}</td>
+
+<td>{{ item.possui_atestado }}</td>
+
+<td>{{ item.responsavel_contato }}</td>
+
+<td>{{ item.telefone_contato }}</td>
+
+<td>{{ item.professor_responsavel }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>

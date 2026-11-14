@@ -1,10 +1,10 @@
 from django.db import models
-from alunos.models import Aluno
 
 
 class Documento(models.Model):
+
     aluno = models.ForeignKey(
-        Aluno,
+        'alunos.Aluno',
         on_delete=models.CASCADE
     )
 
@@ -17,8 +17,34 @@ class Documento(models.Model):
     )
 
     class Meta:
+
         verbose_name = 'Documento'
+
         verbose_name_plural = 'Documentos'
 
     def __str__(self):
-        return f"{self.tipo_documento} - {self.aluno.nome}"
+
+        return self.tipo_documento
+
+
+class ModeloDeclaracao(models.Model):
+
+    nome = models.CharField(
+        max_length=100
+    )
+
+    texto = models.TextField()
+
+    ativo = models.BooleanField(
+        default=True
+    )
+
+    class Meta:
+
+        verbose_name = 'Modelo de Declaração'
+
+        verbose_name_plural = 'Modelos de Declaração'
+
+    def __str__(self):
+
+        return self.nome
