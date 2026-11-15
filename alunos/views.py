@@ -8,6 +8,15 @@ from .models import (
     BuscaAtiva
 )
 
+from django.shortcuts import render
+
+def pagina_inicial(request):
+
+    return render(
+        request,
+        'home.html'
+    )
+
 
 def alunos_home(request):
 
@@ -34,9 +43,6 @@ def busca_ativa(request):
         }
     )
 
-def pagina_inicial(request):
-
-    return redirect('/alunos/')
 
 
 def relatorio_conselho(request, pk):

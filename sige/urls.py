@@ -25,5 +25,4 @@ urlpatterns = [
         'admin/',
         admin.site.urls
     ),
-
 ]

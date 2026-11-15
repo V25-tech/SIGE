@@ -1,203 +1,289 @@
 {% load static %}
 
-<img src="{% static 'img/logo-sige.png' %}"
-     alt="Logo SIGE"
-     class="logo">
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>SIGE</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>SIGE</title>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <style>
 
-body{
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(
-        135deg,
-        #0D47A1,
-        #1976D2
-    );
-    min-height:100vh;
-}
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
 
-.container{
-    max-width:1000px;
-    margin:40px auto;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 10px 40px rgba(0,0,0,.2);
-    text-align:center;
-}
+        body{
 
-.logo{
-    width:220px;
-    height:auto;
-    display:block;
-    margin:0 auto 20px;
-}
-h1{
-    color:#0D47A1;
-    font-size:52px;
-    margin-top:15px;
-}
+            background: linear-gradient(
+                180deg,
+                #0d47a1,
+                #1976d2
+            );
 
-.subtitulo{
-    font-size:24px;
-    color:#444;
-    margin-top:10px;
-}
+            min-height:100vh;
+        }
 
-.slogan{
-    color:#1976D2;
-    font-weight:bold;
-    margin-top:15px;
-}
+        .topo{
 
-.escola{
-    color:#777;
-    margin:20px 0 30px;
-}
+            text-align:center;
+            padding:25px;
+        }
 
-.cards{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-bottom:30px;
-}
+        .topo img{
 
-.card{
-    background:#F5F7FA;
-    width:220px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-}
+            width:220px;
+        }
 
-.card h3{
-    color:#0D47A1;
-    margin-bottom:10px;
-}
+        .container{
 
-.card p{
-    font-size:40px;
-    font-weight:bold;
-    color:#1976D2;
-}
+            background:#f5f5f5;
 
-.botao{
-    display:block;
-    width:340px;
-    margin:15px auto;
-    padding:16px;
-    background:#0D47A1;
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
-    font-weight:bold;
-    transition:0.3s;
-}
+            border-radius:40px 40px 0 0;
 
-.botao:hover{
-    background:#1976D2;
-}
+            padding:40px 25px;
 
-</style>
+            min-height:100vh;
+        }
+
+        .logo-centro{
+
+            text-align:center;
+        }
+
+        .logo-centro img{
+
+            width:180px;
+            margin-bottom:20px;
+        }
+
+        h1{
+
+            color:#1453b1;
+            font-size:60px;
+            text-align:center;
+            margin-bottom:15px;
+        }
+
+        .subtitulo{
+
+            text-align:center;
+            font-size:20px;
+            color:#444;
+            margin-bottom:10px;
+        }
+
+        .frase{
+
+            text-align:center;
+            color:#1976d2;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+
+        .escola{
+
+            text-align:center;
+            color:#666;
+            margin-bottom:40px;
+        }
+
+        .cards{
+
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        .card{
+
+            background:white;
+
+            border-radius:20px;
+
+            padding:25px;
+
+            text-align:center;
+
+            box-shadow:0 3px 15px rgba(
+                0,
+                0,
+                0,
+                0.15
+            );
+        }
+
+        .card h3{
+
+            color:#0d47a1;
+            margin-bottom:10px;
+        }
+
+        .card span{
+
+            font-size:50px;
+            color:#1976d2;
+            font-weight:bold;
+        }
+
+        .menu{
+
+            margin-top:40px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:15px;
+        }
+
+        .botao{
+
+            background:#0d47a1;
+
+            color:white;
+
+            text-decoration:none;
+
+            padding:18px;
+
+            border-radius:12px;
+
+            text-align:center;
+
+            font-weight:bold;
+
+            font-size:20px;
+        }
+
+        .botao:hover{
+
+            background:#08357c;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="topo">
 
-    <img src="{% static 'img/logo-sige.png' %}"
-         alt="Logo SIGE"
-         class="logo">
+        <img
+            src="{% static 'img/logo_sige.png' %}"
+            alt="SIGE"
+        >
 
-    <h1>SIGE</h1>
+    </div>
 
-    <p class="subtitulo">
-        Sistema Integrado de Gestão Escolar
-    </p>
+    <div class="container">
 
-    <p class="slogan">
-        Conectando Educação, Gestão e Tecnologia
-    </p>
+        <div class="logo-centro">
 
-    <p class="escola">
-        EMEB Dionysio Bovo
-    </p>
+            <img
+                src="{% static 'img/logo_sige.png' %}"
+                alt="SIGE"
+            >
 
-    <div class="cards">
-
-        <div class="card">
-            <h3>👨‍🎓 Alunos</h3>
-            <p>{{ total_alunos }}</p>
         </div>
 
-        <div class="card">
-            <h3>👨‍👩‍👧 Responsáveis</h3>
-            <p>{{ total_responsaveis }}</p>
+        <h1>SIGE</h1>
+
+        <p class="subtitulo">
+
+            Sistema Integrado de Gestão Escolar
+
+        </p>
+
+        <p class="frase">
+
+            Conectando Educação, Gestão e Tecnologia
+
+        </p>
+
+        <p class="escola">
+
+            EMEB Dionysio Bovo
+
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>👨‍🎓 Alunos</h3>
+
+                <span>6</span>
+
+            </div>
+
+            <div class="card">
+
+                <h3>👨‍👩‍👧 Responsáveis</h3>
+
+                <span>5</span>
+
+            </div>
+
+            <div class="card">
+
+                <h3>📄 Documentos</h3>
+
+                <span>4</span>
+
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>📄 Documentos</h3>
-            <p>{{ total_documentos }}</p>
+        <div class="menu">
+
+            <a
+                href="/alunos/"
+                class="botao"
+            >
+                👨‍🎓 Consultar Alunos
+            </a>
+
+            <a
+                href="/alunos/busca-ativa/"
+                class="botao"
+            >
+                🔎 Busca Ativa
+            </a>
+
+            <a
+                href="/indicadores/"
+                class="botao"
+            >
+                📊 Dashboard da Direção
+            </a>
+
+            <a
+                href="/emitir-declaracao/"
+                class="botao"
+            >
+                📄 Emitir Declaração
+            </a>
+
+            <a
+                href="/admin/"
+                class="botao"
+            >
+                ⚙️ Administração
+            </a>
+
         </div>
 
     </div>
 
-    <a href="/alunos/" class="botao">
-        👨‍🎓 Consultar Alunos
-    </a>
+</body>
 
-    <a href="/admin/alunos/aluno/add/" class="botao">
-        ➕ Cadastrar Aluno
-    </a>
-
- <a href="/emitir-declaracao/" class="botao">
-📄 Emitir Declaração
-</a>
-
-    <a href="/admin/" class="botao">
-        ⚙️ Administração
-    </a>
-<a href="/relatorio-pais/" class="botao">
-    👨‍👩‍👧 Relatório para Pais
-</a>
-
-
-<a >
-
-<a href="/admin/indicadores/apm/">
-💰 APM Financeira
-</a>
-
-<a href="/admin/indicadores/avaliacaoexterna/">
-📊  Avaliações Externas
-</a>
-
-<a href="/indicadores/">
-    📊 Dashboard da Direção
-</a>
-
-<a href="/indicadores/importar-planilha/">
-    📁 Importar Planilha Excel
-</a>
-
-<a href="/admin/">
-    ⚙ Administração
-</a>
+</html>
