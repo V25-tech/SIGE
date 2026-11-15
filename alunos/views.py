@@ -1,14 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
-from django.shortcuts import redirect
 
 from .models import (
     Aluno,
     BuscaAtiva
 )
 
-from django.shortcuts import render
 
 def pagina_inicial(request):
 
@@ -44,7 +42,6 @@ def busca_ativa(request):
     )
 
 
-
 def relatorio_conselho(request, pk):
 
     registro = BuscaAtiva.objects.get(
@@ -70,12 +67,22 @@ def relatorio_conselho(request, pk):
         "Relatório Busca Ativa"
     )
 
+    pdf.setFont(
+        "Helvetica-Bold",
+        14
+    )
+
     y = 800
 
     pdf.drawString(
         50,
         y,
         "RELATÓRIO DE BUSCA ATIVA"
+    )
+
+    pdf.setFont(
+        "Helvetica",
+        10
     )
 
     y -= 40
@@ -184,13 +191,29 @@ def relatorio_conselho(request, pk):
 
     y -= 50
 
+    pdf.setFont(
+        "Helvetica-Bold",
+        12
+    )
+
     pdf.drawString(
         50,
         y,
         "HISTÓRICO DE CONTATOS"
     )
 
+    pdf.setFont(
+        "Helvetica",
+        10
+    )
+
     for contato in historicos:
+
+        if y < 120:
+
+            pdf.showPage()
+
+            y = 800
 
         y -= 25
 
@@ -222,7 +245,8 @@ def relatorio_conselho(request, pk):
         pdf.drawString(
             70,
             y,
-            f"Obs: {contato.observacoes}"
+            f"Observações: "
+            f"{contato.observacoes}"
         )
 
     pdf.save()
